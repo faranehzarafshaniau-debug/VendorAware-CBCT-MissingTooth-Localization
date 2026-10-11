@@ -1,0 +1,32 @@
+{
+  "analysis_status": "post-submission exploratory external-architecture benchmark",
+  "completion_marker": true,
+  "final_audit_status": "PASS",
+  "fold_mean_best_validation_pFROC": {
+    "0": 0.25357142857142856,
+    "1": 0.2571428571428571,
+    "2": 0.16785714285714284,
+    "3": 0.19230769230769232,
+    "4": 0.28076923076923077
+  },
+  "formal_reports_found": 25,
+  "formal_runs_expected": 25,
+  "integrity_issue_count": 0,
+  "integrity_issues": [],
+  "max_best_validation_pFROC": 0.5,
+  "mean_best_validation_pFROC": 0.23032967032967033,
+  "median_best_validation_pFROC": 0.19642857142857142,
+  "min_best_validation_pFROC": 0.0,
+  "protocol": "PAPER2_REVISION_R1_EXP_C_MONAI_RETINANET3D_V1",
+  "real_error_terms_found": [],
+  "repeat_mean_best_validation_pFROC": {
+    "1": 0.1293956043956044,
+    "2": 0.325,
+    "3": 0.2076923076923077,
+    "4": 0.2543956043956044,
+    "5": 0.23516483516483516
+  },
+  "run_complete_count": 25,
+  "sd_best_validation_pFROC": 0.1212653046896882,
+  "statistical_note": "Run-level values are descriptive. No new unplanned inferential test is introduced for EXP-C."
+}

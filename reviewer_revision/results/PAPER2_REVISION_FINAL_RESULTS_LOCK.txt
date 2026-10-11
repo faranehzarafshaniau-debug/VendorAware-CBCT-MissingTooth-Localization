@@ -1,0 +1,57 @@
+PAPER2 REVISION R1 — FINAL COMPUTATIONAL LOCK
+Date: 2026-10-11
+
+EXP-A — Matched GRL isolation
+Audit status: PASS
+Formal runs: 50
+Paired comparisons: 25
+GRL_OFF mean pFROC: 0.887033
+GRL_OFF SD: 0.090453
+GRL_ON mean pFROC: 0.889780
+GRL_ON SD: 0.089334
+Mean paired difference: +0.002747
+Median paired difference: +0.000000
+Positive / Negative / Tie: 10 / 4 / 11
+Fold-level exact two-sided sign-flip p: 0.875
+
+Interpretation:
+No evidence of a material localization advantage from the GRL branch
+when normalization and all other training conditions are matched.
+
+EXP-B — Physical-space versus native-voxel processing
+Audit status: PASS
+Formal runs: 50
+Paired comparisons: 25
+PHYSICAL mean pFROC: 0.899725
+PHYSICAL SD: 0.086045
+VOXEL mean pFROC: 0.430220
+VOXEL SD: 0.120363
+Mean paired difference: +0.469505
+Median paired difference: +0.464286
+Positive / Negative / Tie: 25 / 0 / 0
+Fold-level exact two-sided sign-flip p: 0.0625
+
+Interpretation:
+Physical-space processing showed a large and directionally consistent
+advantage in all 25 paired runs and all five fold-level blocks.
+With five independent fold blocks, the exact two-sided test has limited
+resolution and does not cross the conventional 0.05 threshold.
+
+EXP-C — MONAI RetinaNet3D external benchmark
+Audit status: PASS
+Formal runs: 25
+Mean best validation pFROC: 0.230330
+SD: 0.121265
+Median: 0.196429
+Range: 0.000000 to 0.500000
+
+Interpretation:
+The external MONAI RetinaNet3D benchmark performed substantially below
+the internal physical-space detector under the locked revision protocol.
+It is retained transparently as an external-framework benchmark.
+
+FINAL STATUS
+EXP-A PASS
+EXP-B PASS
+EXP-C PASS
+No further GPU experiments are required or planned.

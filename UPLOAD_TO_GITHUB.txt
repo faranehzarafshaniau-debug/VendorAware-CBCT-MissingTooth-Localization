@@ -1,0 +1,13 @@
+GitHub repository target:
+https://github.com/faranehzarafshaniau-debug/VendorAware-CBCT-MissingTooth-Localization
+
+UPLOAD METHOD (web interface):
+1. Extract the ZIP delivered by ChatGPT.
+2. Open the extracted folder named VendorAware-CBCT-MissingTooth-Localization.
+3. Select ALL contents inside that folder (README.md, folders, CITATION.cff, etc.).
+4. Drag those contents into GitHub's "Upload files" box.
+5. Commit message: Initial reproducibility release for Scientific Reports revision
+6. Click "Commit changes".
+7. Return to the repository home page and verify README renders and all folders are visible.
+
+Do NOT upload the outer ZIP itself as the only repository file.

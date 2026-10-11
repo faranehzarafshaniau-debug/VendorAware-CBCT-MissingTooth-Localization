@@ -1,0 +1,24 @@
+cff-version: 1.2.0
+message: "If you use this reproducibility release, please cite the associated article and this repository."
+title: "Vendor-Aware 3D Missing-Tooth Localization in Multi-Vendor CBCT - Reproducibility Materials"
+type: software
+authors:
+  - family-names: Asgari
+    given-names: Hana
+  - family-names: Zarafshan
+    given-names: Faraneh
+  - family-names: Talaeipoor
+    given-names: Ahmadreza
+  - family-names: Mazinan
+    given-names: Elham
+version: "revision-2026-10-11"
+date-released: 2026-10-11
+repository-code: "https://github.com/faranehzarafshaniau-debug/VendorAware-CBCT-MissingTooth-Localization"
+url: "https://github.com/faranehzarafshaniau-debug/VendorAware-CBCT-MissingTooth-Localization"
+keywords:
+  - CBCT
+  - missing-tooth localization
+  - 3D object detection
+  - multi-vendor imaging
+  - semi-supervised learning
+  - reproducibility

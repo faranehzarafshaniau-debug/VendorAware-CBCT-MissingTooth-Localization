@@ -1,0 +1,67 @@
+{
+  "protocol_id": "PAPER2_REVISION_R1_EXP_C_MONAI_RETINANET3D_V1",
+  "date_locked": "2026-09-22",
+  "reviewer_link": "Reviewer 2 Comment 3",
+  "status": "LOCKED_FRAMEWORK_BEFORE_NEW_GPU_EXECUTION",
+  "scientific_question": "How does the study detector compare with an established, independently maintained 3D medical object-detection framework under the same case partitions and evaluation endpoint?",
+  "analysis_status": "post-submission exploratory external-architecture benchmark",
+  "selected_framework": {
+    "name": "MONAI 3D RetinaNet / RetinaNetDetector",
+    "target_version": "MONAI 1.6.0",
+    "reason": "Official MONAI provides 2D/3D RetinaNet detection components and a maintained LUNA16 3D detection tutorial; MONAI 1.6.0 is compatible with the modern PyTorch/CUDA environment and avoids the legacy PyTorch-1.x constraint of nnDetection.",
+    "not_claimed_as": "nnDetection or a reproduction of nnDetection"
+  },
+  "data_contract": {
+    "labeled_manifest": "manifests/inner_split_v1/nested_partitions_v1.csv",
+    "labeled_manifest_sha256": "4bb762bf39ef20813abb7723e494a4cc0fbbff3860c345cc4bec2cf26edbabc3",
+    "folds": [0,1,2,3,4],
+    "repeats": 5,
+    "formal_training_runs": 25,
+    "uses_unlabeled_data": false,
+    "input": "same 0.5-mm isotropic preprocessed volumes used by the canonical physical-space pipeline"
+  },
+  "model_contract": {
+    "detector": "monai.apps.detection.networks.retinanet_detector.RetinaNetDetector",
+    "network": "3D RetinaNet with ResNet-FPN feature extractor",
+    "spatial_dims": 3,
+    "pretrained_backbone": false,
+    "matcher": "ATSS, num_candidates=4, center_in_gt=False",
+    "hard_negative_sampler": "batch_size_per_image=64, pool_size=20, min_neg=16",
+    "detections_per_image": 100,
+    "sliding_window_inference": true,
+    "validation_patch_size": [128,160,160],
+    "validation_overlap": 0.25
+  },
+  "anchor_contract": {
+    "selection_data": "optimization boxes only within each fold",
+    "procedure": "derive three base anchor shapes deterministically from the component-wise 25th, 50th, and 75th percentiles of optimization-box extents on the 0.5-mm resampled voxel grid; round each dimension to the nearest positive integer >= 2",
+    "no_validation_tuning": true,
+    "feature_map_scales": "powers of two across returned FPN levels"
+  },
+  "training_contract": {
+    "formal_seed_schedule": "same repeat/fold seed schedule used for the paired revision experiments",
+    "training_budget": "30 epochs x 96 optimizer steps per epoch",
+    "validation_every_epochs": 5,
+    "batch_size": 1,
+    "amp_fp16": true,
+    "optimizer": "SGD with momentum=0.9, nesterov=True, weight_decay=3e-5",
+    "learning_rate": "fixed before formal runs after implementation smoke only; default starting candidate 0.01; any change requires a pre-performance protocol amendment and cannot use formal validation results",
+    "checkpoint_selection": "maximum validation pFROC under the manuscript evaluator; exact ties retain earlier epoch",
+    "normalization": "labeled optimization cases only, using the same percentile normalization formula as the canonical pure-supervised benchmark",
+    "augmentation": "minimal geometry-preserving training augmentation; no test-set-derived tuning"
+  },
+  "evaluation_contract": {
+    "primary_endpoint": "validation pFROC at FP/volume budgets 0.5, 1, 2, 4 using the manuscript matching/evaluation code",
+    "secondary": ["training time", "peak memory", "fold-repeat distribution"],
+    "calibration_and_outer_test": "not required for the primary reviewer response",
+    "comparison": "MONAI RetinaNet3D is reported alongside the existing internal Conventional3D and Mean-Teacher3D controls; it does not replace them"
+  },
+  "smoke_test_policy": {
+    "allowed": true,
+    "scope": "one fold, one seed, <= 2 epochs / small step count, execution-only",
+    "performance_interpretation": false,
+    "allowed_changes_after_smoke": "implementation fixes, tensor-shape fixes, memory-safety fixes, and one learning-rate feasibility amendment before formal results are viewed"
+  },
+  "failure_policy": "retain formal failures; no performance-based deletion or hyperparameter rescue after formal results begin",
+  "claim_rule": "Use this experiment only to benchmark against an established external detector implementation. Do not claim state of the art from a single framework comparison."
+}

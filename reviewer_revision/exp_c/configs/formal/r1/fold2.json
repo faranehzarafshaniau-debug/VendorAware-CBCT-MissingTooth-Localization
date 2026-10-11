@@ -1,0 +1,30 @@
+{
+  "epochs": 30,
+  "steps_per_epoch": 96,
+  "validation_every_epochs": 5,
+  "patch_dhw": [
+    128,
+    160,
+    160
+  ],
+  "positive_fraction": 0.8,
+  "normalization_voxels_per_case": 20000,
+  "normalization_percentiles": [
+    0.5,
+    99.5
+  ],
+  "learning_rate": 0.01,
+  "score_thresh": 0.001,
+  "nms_iou": 0.1,
+  "maximum_detections_per_case": 100,
+  "matching_iou": 0.1,
+  "froc_budgets": [
+    0.5,
+    1.0,
+    2.0,
+    4.0
+  ],
+  "outer_fold": 2,
+  "repeat": 1,
+  "seed": 34028
+}

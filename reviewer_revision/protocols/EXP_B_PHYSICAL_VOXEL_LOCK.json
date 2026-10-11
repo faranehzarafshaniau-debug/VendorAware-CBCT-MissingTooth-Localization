@@ -1,0 +1,83 @@
+{
+  "protocol_id": "PAPER2_REVISION_R1_EXP_B_PHYSICAL_VOXEL_V1",
+  "date_locked": "2026-09-22",
+  "reviewer_link": "Reviewer 1 Comment 5",
+  "status": "LOCKED_BEFORE_NEW_GPU_EXECUTION",
+  "scientific_question": "Does geometry-aware physical-space processing improve localization relative to a native-voxel implementation when model architecture, supervision, optimization, seeds, and evaluation are otherwise matched?",
+  "analysis_status": "post-submission revision experiment",
+  "data_contract": {
+    "labeled_manifest": "manifests/inner_split_v1/nested_partitions_v1.csv",
+    "labeled_manifest_sha256": "4bb762bf39ef20813abb7723e494a4cc0fbbff3860c345cc4bec2cf26edbabc3",
+    "folds": [0,1,2,3,4],
+    "repeats": 5,
+    "seed_formula": "33026 + repeat*1000 + fold, repeat in {1,2,3,4,5}",
+    "formal_training_runs": 50,
+    "uses_unlabeled_data": false
+  },
+  "shared_training_contract": {
+    "model_family": "VRSSL3D supervised localization path",
+    "architecture_sha256_reference": "63eae8fc648877db159c0b561f87f401c7599210077974328d7ed1c224d33267",
+    "vendor_loss_weight": 0.0,
+    "grl_scale": 0.0,
+    "consistency_loss_weight": 0.0,
+    "epochs": 30,
+    "steps_per_epoch": 96,
+    "patch_dhw": [128,160,160],
+    "stride_dhw": [96,120,120],
+    "positive_fraction": 0.8,
+    "hard_negative_candidates": 2,
+    "hard_negative_start_epoch": 10,
+    "validation_every_epochs": 5,
+    "learning_rate": 0.0001,
+    "weight_decay": 0.0001,
+    "ema_momentum": 0.99,
+    "gradient_clip": 12.0,
+    "checkpoint_selection": "maximum validation pFROC; exact ties retain earlier epoch"
+  },
+  "shared_intensity_contract": {
+    "normalization_source": "raw optimization-case intensity samples before spatial resampling",
+    "same_scalar_normalization_statistics_between_arms": true,
+    "normalization_voxels_per_case": 20000,
+    "percentiles": [0.5,99.5]
+  },
+  "arms": {
+    "PHYSICAL": {
+      "slice_order": "DICOM physical position",
+      "spatial_preprocessing": "resample to 0.5-mm isotropic spacing",
+      "box_frame": "patient-space physical coordinates with analytically transformed box corners",
+      "regression_and_candidate_association": "geometry-aware canonical implementation",
+      "nms": "after conversion to patient-space millimetres"
+    },
+    "VOXEL": {
+      "slice_order": "same correct DICOM physical slice order as PHYSICAL; filename ordering is not permitted",
+      "spatial_preprocessing": "no isotropic spacing normalization; operate on native voxel lattice",
+      "patch_definition": "128x160x160 native voxels",
+      "box_frame": "native voxel-index coordinates",
+      "regression_and_candidate_association": "voxel-index coordinates",
+      "nms": "voxel-coordinate boxes",
+      "evaluation_conversion": "predicted voxel boxes are transformed through the DICOM affine to the common physical evaluation frame before final metric computation"
+    }
+  },
+  "primary_endpoint": "validation partial FROC (pFROC)",
+  "secondary_endpoints": [
+    "sensitivity",
+    "false positives per volume",
+    "median matched center error in millimetres",
+    "vendor-stratified descriptive summaries"
+  ],
+  "operating_point_for_secondary_endpoints": {
+    "selection": "fold-specific calibration partition; maximize sensitivity subject to FP/volume <= 1",
+    "outer_test_use": "may be reported only as an explicitly post-lock exploratory secondary analysis because original outer-test outcomes were previously known",
+    "no_threshold_selection_on_outer_test": true
+  },
+  "statistics": {
+    "primary_blocking_unit": "outer fold",
+    "primary_test": "two-sided exact sign-flip test on five fold-level mean pFROC differences after averaging five repeats within fold",
+    "case_level_uncertainty": "2000 case-level bootstrap replicates for any post-lock operating-point summary",
+    "run_level_results": "descriptive only"
+  },
+  "required_raw_data": true,
+  "cache_note": "The existing 0.5-mm cache alone is insufficient to construct the native-voxel arm; raw DICOM or an equivalent native-grid cache is required.",
+  "failure_policy": "retain and document every failure; implementation-only fixes are allowed before formal runs, but no performance-driven tuning",
+  "claim_rule": "Do not claim that physical-space processing reduces scanner dependence unless the matched ablation supports the statement. If results are tied or negative, report that directly."
+}

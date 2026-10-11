@@ -1,0 +1,93 @@
+{
+  "arm_descriptive": {
+    "grl_off": {
+      "max": 1.0,
+      "mean": 0.8870329670329671,
+      "median": 0.9230769230769231,
+      "min": 0.6785714285714286,
+      "n": 25,
+      "sd": 0.09045295772880323
+    },
+    "grl_on": {
+      "max": 1.0,
+      "mean": 0.8897802197802198,
+      "median": 0.9230769230769231,
+      "min": 0.6964285714285714,
+      "n": 25,
+      "sd": 0.08933437670802982
+    }
+  },
+  "base": "/home/ubuntu/PAPER2_REVISION_R1/revision_exec/exp_a_matched_v1/outputs_formal",
+  "contrast": "GRL_ON minus GRL_OFF",
+  "experiment": "EXP_A",
+  "final_audit_status": "PASS",
+  "fold_level_primary": {
+    "exact_two_sided_signflip_p": 0.875,
+    "fold_mean_differences": {
+      "0": {
+        "mean_difference": 0.007142857142857162,
+        "repeat_differences": [
+          0.0,
+          0.0535714285714286,
+          0.0,
+          -0.0535714285714286,
+          0.03571428571428581
+        ]
+      },
+      "1": {
+        "mean_difference": -0.007142857142857162,
+        "repeat_differences": [
+          0.0357142857142857,
+          0.017857142857142794,
+          -0.0714285714285714,
+          -0.0357142857142857,
+          0.017857142857142794
+        ]
+      },
+      "2": {
+        "mean_difference": 0.021428571428571484,
+        "repeat_differences": [
+          0.03571428571428581,
+          0.0,
+          0.03571428571428581,
+          0.0,
+          0.03571428571428581
+        ]
+      },
+      "3": {
+        "mean_difference": -0.007692307692307732,
+        "repeat_differences": [
+          0.0,
+          -0.07692307692307698,
+          0.019230769230769162,
+          0.0,
+          0.019230769230769162
+        ]
+      },
+      "4": {
+        "mean_difference": 0.0,
+        "repeat_differences": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      }
+    },
+    "mean_of_five_fold_differences": 0.0027472527472527505,
+    "n_independent_blocks": 5
+  },
+  "formal_reports_found": 50,
+  "integrity_issue_count": 0,
+  "integrity_issues": [],
+  "paired_comparisons_found": 25,
+  "paired_run_level_descriptive": {
+    "mean_difference": 0.002747252747252751,
+    "median_difference": 0.0,
+    "n": 25,
+    "negative": 4,
+    "positive": 10,
+    "ties": 11
+  }
+}

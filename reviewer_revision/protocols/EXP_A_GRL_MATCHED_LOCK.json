@@ -1,0 +1,82 @@
+{
+  "protocol_id": "PAPER2_REVISION_R1_EXP_A_GRL_MATCHED_V1",
+  "date_locked": "2026-09-22",
+  "reviewer_link": "Reviewer 1 Comment 4",
+  "status": "LOCKED_BEFORE_NEW_GPU_EXECUTION",
+  "scientific_question": "Does the GRL/vendor-adversarial branch change localization performance when normalization, sampling, architecture, optimization, seeds, checkpoint selection, and evaluation are strictly matched?",
+  "analysis_status": "post-submission revision experiment; exploratory with respect to previously accessed outer-test data",
+  "data_contract": {
+    "labeled_manifest": "manifests/inner_split_v1/nested_partitions_v1.csv",
+    "labeled_manifest_sha256": "4bb762bf39ef20813abb7723e494a4cc0fbbff3860c345cc4bec2cf26edbabc3",
+    "unlabeled_manifest": "manifests/split_v1/eligible_unlabeled_v1.csv",
+    "unlabeled_manifest_sha256": "6b69ffc1bf40e895fe6a13dcae697cb987f6e2bcd687ba10e6954b59b9956912",
+    "folds": [0,1,2,3,4],
+    "repeats": 5,
+    "seed_formula": "33026 + repeat*1000 + fold, repeat in {1,2,3,4,5}",
+    "formal_training_runs": 50,
+    "calibration_and_outer_test_during_training": false
+  },
+  "shared_training_contract": {
+    "model_family": "VRSSL3D",
+    "architecture_sha256_reference": "63eae8fc648877db159c0b561f87f401c7599210077974328d7ed1c224d33267",
+    "epochs": 30,
+    "steps_per_epoch": 96,
+    "patch_dhw": [128,160,160],
+    "stride_dhw": [96,120,120],
+    "positive_fraction": 0.8,
+    "hard_negative_candidates": 2,
+    "hard_negative_start_epoch": 10,
+    "validation_every_epochs": 5,
+    "learning_rate": 0.0001,
+    "weight_decay": 0.0001,
+    "ema_momentum": 0.99,
+    "amp_initial_scale": 128.0,
+    "gradient_clip": 12.0,
+    "consistency_loss_weight": 0.0,
+    "vendor_balanced_labeled_sampling": true,
+    "vendor_balanced_unlabeled_sampling": true,
+    "checkpoint_selection": "maximum validation pFROC; exact ties retain earlier epoch",
+    "froc_budgets_fp_per_volume": [0.5,1.0,2.0,4.0]
+  },
+  "normalization_contract": {
+    "fit_scope": "labeled optimization cases plus all eligible unlabeled cases, matching the historical vendor-adversarial strategy",
+    "fit_once_per_fold_repeat": true,
+    "same_normalization_file_byte_identical_between_arms": true,
+    "normalization_voxels_per_case": 20000,
+    "percentiles": [0.5,99.5]
+  },
+  "arms": {
+    "GRL_OFF": {
+      "grl_scale": 0.0,
+      "vendor_loss_weight": 0.0,
+      "vendor_head_present": true,
+      "all_other_code_paths_matched": true
+    },
+    "GRL_ON": {
+      "grl_scale": 0.1,
+      "vendor_loss_weight": 0.1,
+      "vendor_head_present": true,
+      "all_other_code_paths_matched": true
+    }
+  },
+  "primary_endpoint": "validation partial FROC (pFROC)",
+  "secondary_outputs": [
+    "fold-repeat paired pFROC difference",
+    "wins/ties/losses",
+    "training time and peak memory"
+  ],
+  "statistics": {
+    "primary_blocking_unit": "outer fold",
+    "primary_test": "two-sided exact sign-flip test on five fold-level mean differences after averaging five repeats within each fold",
+    "run_level_results": "descriptive only; not treated as independent clinical samples",
+    "effect_reporting": "mean paired difference with fold-level values and descriptive 95% bootstrap interval if case-level predictions are available",
+    "multiplicity": "none; this is one reviewer-requested contrast"
+  },
+  "optional_secondary_postlock_outertest": {
+    "allowed_only_if_implemented_before_viewing_new_results": true,
+    "status": "NOT_REQUIRED_FOR_PRIMARY_RESPONSE",
+    "interpretation": "exploratory because the original outer test has already been accessed"
+  },
+  "failure_policy": "retain and document every failed run; no performance-based deletion or replacement",
+  "claim_rule": "Existing vendor-vs-pure results cannot be causally attributed to GRL. Any GRL statement in the revision must follow this matched contrast and remain dataset-specific."
+}
