@@ -1,13 +1,28 @@
-GitHub repository target:
+FINAL R2 REPOSITORY UPDATE — 2026-10-19
+
+Target repository:
 https://github.com/faranehzarafshaniau-debug/VendorAware-CBCT-MissingTooth-Localization
 
-UPLOAD METHOD (web interface):
-1. Extract the ZIP delivered by ChatGPT.
-2. Open the extracted folder named VendorAware-CBCT-MissingTooth-Localization.
-3. Select ALL contents inside that folder (README.md, folders, CITATION.cff, etc.).
-4. Drag those contents into GitHub's "Upload files" box.
-5. Commit message: Initial reproducibility release for Scientific Reports revision
-6. Click "Commit changes".
-7. Return to the repository home page and verify README renders and all folders are visible.
+This repository snapshot is aligned to the Scientific Reports R2 minor revision.
+No new experiment was added in R2.
 
-Do NOT upload the outer ZIP itself as the only repository file.
+Recommended commit message:
+Align public reproducibility release with Scientific Reports R2 minor revision
+
+After upload/update, verify that these files are visible at repository root:
+- README.md
+- CODE_AVAILABILITY.md
+- CITATION.cff
+- PUBLICATION_VERSION_MANIFEST.md
+- PUBLICATION_VERSION_MANIFEST.sha256
+- RELEASE_NOTES_R2.md
+- SHA256SUMS.txt
+
+And under docs/:
+- ANALYSIS_STAGE_MAP_R2.md
+- PUBLIC_RELEASE_ALIGNMENT_R2.md
+- FINAL_R2_REPRODUCIBILITY_AUDIT.txt
+- RELEASE_SCOPE_CHECKLIST.md
+- VERIFIED_ENVIRONMENT_NOTES.md
+
+Do not upload raw DICOM data.

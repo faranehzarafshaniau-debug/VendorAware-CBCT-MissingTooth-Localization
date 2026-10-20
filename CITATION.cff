@@ -11,8 +11,8 @@ authors:
     given-names: Ahmadreza
   - family-names: Mazinan
     given-names: Elham
-version: "revision-2026-10-11"
-date-released: 2026-10-11
+version: "revision-r2-2026-10-19"
+date-released: 2026-10-19
 repository-code: "https://github.com/faranehzarafshaniau-debug/VendorAware-CBCT-MissingTooth-Localization"
 url: "https://github.com/faranehzarafshaniau-debug/VendorAware-CBCT-MissingTooth-Localization"
 keywords:
