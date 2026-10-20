@@ -1,0 +1,67 @@
+PAPER2 SCIENTIFIC REPORTS MINOR REVISION — FINAL CONSISTENCY AUDIT
+Date: 2026-10-19
+
+main_repeated_seed_defined=PASS
+main_locked_outer_test_defined=PASS
+main_post_lock_exploratory_defined=PASS
+supp_repeated_seed_defined=PASS
+supp_locked_outer_test_defined=PASS
+supp_post_lock_exploratory_defined=PASS
+main_dataset_counts_83=PASS
+supp_dataset_counts_83=PASS
+main_dataset_counts_73=PASS
+supp_dataset_counts_73=PASS
+main_dataset_counts_111=PASS
+supp_dataset_counts_111=PASS
+main_repeated_seed_0.890=PASS
+supp_repeated_seed_0.890=PASS
+main_repeated_seed_0.899=PASS
+supp_repeated_seed_0.899=PASS
+main_repeated_seed_0.872=PASS
+supp_repeated_seed_0.872=PASS
+main_outer_vendor_0.793=PASS
+supp_outer_vendor_0.793=PASS
+main_outer_vendor_0.458=PASS
+supp_outer_vendor_0.458=PASS
+main_physical_0.0625=PASS
+supp_physical_0.0625=PASS
+main_physical_0.4695=PASS
+supp_physical_0.4695=PASS
+main_monai_0.230=PASS
+supp_monai_0.230=PASS
+main_monai_0.121=PASS
+supp_monai_0.121=PASS
+main_monai_0.196=PASS
+supp_monai_0.196=PASS
+main_grl_0.875=PASS
+supp_grl_0.875=PASS
+main_grl_0.0027=PASS
+supp_grl_0.0027=PASS
+main_physical_not_significant=PASS
+supp_physical_not_significant=PASS
+main_monai_descriptive=PASS
+supp_monai_descriptive=PASS
+main_monai_no_sota=PASS
+supp_monai_no_sota=PASS
+no_bad_macro_\method configuration=PASS
+no_bad_macro_between \method and=PASS
+no_bad_macro_reliability-gated \method.=PASS
+no_bad_macro_that \method would=PASS
+github_manifest_196_entries=PASS  entries=196
+github_manifest_zero_mismatch=PASS  rc=0
+evidence_sha_match=PASS  692c2e9699810b51fd33c327a9f174f2a7bb7ced57eea93175d252c0d9a844d8
+
+SUMMARY
+checks_total=49
+checks_pass=49
+checks_fail=0
+final_status=PASS
+
+PUBLIC RELEASE SNAPSHOT
+release_date=2026-10-19
+files_covered_by_root_sha256_manifest=202
+manuscript_source_sha256=58831c529a4065048005da52799cde180e063fede8b4c4cb4d72927e655553d4
+manuscript_pdf_sha256=3efc176b63b19ee134f14ae695442001614d323b8ba47509d3657589506e1532
+supplement_source_sha256=1f698e32070ee58640cc73e074b078cd8d081f9e174425422d7bd77cd7d9e6b3
+supplement_pdf_sha256=04bfd81a66e96dc5565615758d5ed8a51ec6f051b23e9a3699a1dc23cb8ae0a0
+r2_new_experiments=NO
